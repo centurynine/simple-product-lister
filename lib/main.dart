@@ -1,4 +1,4 @@
-import 'package:app/presentation/bloc/pages/product_page.dart';
+import 'package:app/feature/product/presentation/pages/product_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
