@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Product Lister Application',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: ProductPage(),
+      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.blueAccent)),
+      home: const ProductPage(),
     );
   }
 }

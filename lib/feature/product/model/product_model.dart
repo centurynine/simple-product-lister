@@ -9,7 +9,7 @@ ProductModel productModelFromJson(String str) => ProductModel.fromJson(json.deco
 String productModelToJson(ProductModel data) => json.encode(data.toJson());
 
 class ProductModel {
-    List<Product> products;
+    List<ProductItemModel> products;
     int total;
     int skip;
     int limit;
@@ -22,7 +22,7 @@ class ProductModel {
     });
 
     factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
-        products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
+        products: List<ProductItemModel>.from(json["products"].map((x) => ProductItemModel.fromJson(x))),
         total: json["total"],
         skip: json["skip"],
         limit: json["limit"],
@@ -36,7 +36,7 @@ class ProductModel {
     };
 }
 
-class Product {
+class ProductItemModel {
     int id;
     String title;
     String description;
@@ -60,7 +60,7 @@ class Product {
     List<String> images;
     String thumbnail;
 
-    Product({
+    ProductItemModel({
         required this.id,
         required this.title,
         required this.description,
@@ -85,7 +85,7 @@ class Product {
         required this.thumbnail,
     });
 
-    factory Product.fromJson(Map<String, dynamic> json) => Product(
+    factory ProductItemModel.fromJson(Map<String, dynamic> json) => ProductItemModel(
         id: json["id"],
         title: json["title"],
         description: json["description"],
