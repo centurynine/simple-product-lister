@@ -52,7 +52,29 @@ class _ProductPageState extends State<ProductPage> {
                 },
               );
             } else if (state is ProductError) {
-              return Center(child: Text(state.message));
+              if (state.failure is NetworkFailure) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.wifi_off_rounded, size: 64, color: Colors.redAccent),
+                      Text((state.failure as NetworkFailure).message),
+                    ],
+                  ),
+                );
+              } else if (state.failure is ClientFailure) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.error_rounded, size: 64, color: Colors.redAccent),
+                      Text((state.failure as ClientFailure).message),
+                    ],
+                  ),
+                );
+              } else {
+                return Center(child: Text('An unknown error occurred'));
+              }
             }
             return const SizedBox.shrink();
           },

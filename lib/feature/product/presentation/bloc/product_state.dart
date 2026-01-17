@@ -14,7 +14,19 @@ final class ProductLoaded extends ProductState {
 }
 
 final class ProductError extends ProductState {
-  final String message;
+  final ProductFailure failure;
 
-  ProductError(this.message);
-} 
+  ProductError(this.failure);
+}
+
+sealed class ProductFailure {}
+
+final class NetworkFailure extends ProductFailure {
+  final String message;
+  NetworkFailure(this.message);
+}
+
+final class ClientFailure extends ProductFailure {
+  final String message;
+  ClientFailure(this.message);
+}

@@ -4,8 +4,7 @@ import 'package:dio/dio.dart';
 
 class ProductRepository {
   Future<ProductModel> fetchProducts() async {
-    Response response = await DioNetwork().dio.get('https://dummyjson.com/products');
-    print('Fetch data');
+    Response response = await DioNetwork().dio.get('https://dummyjson.com/products'); 
     if (response.statusCode == 200) {
       return ProductModel.fromJson(response.data);
     } else {

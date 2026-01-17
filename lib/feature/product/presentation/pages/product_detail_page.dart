@@ -29,11 +29,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child: Container(
                       color: Colors.grey[200],
-                      child: Image.network(image, fit: BoxFit.contain)),
+                      child: Image.network(image, fit: BoxFit.contain),
+                    ),
                   );
                 }).toList(),
               ),
             ),
+            const SizedBox(height: 8),
             Text(widget.product.title, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             Text('\$${widget.product.price}', style: const TextStyle(fontSize: 20, color: Colors.green)),

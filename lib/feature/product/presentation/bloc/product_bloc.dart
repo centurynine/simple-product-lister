@@ -1,6 +1,7 @@
 import 'package:app/feature/product/model/product_model.dart';
 import 'package:app/feature/product/repository/product_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
 part 'product_event.dart';
@@ -21,7 +22,11 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       final products = await repository.fetchProducts();
       emit(ProductLoaded(products));
     } catch (e) {
-      emit(ProductError('Failed to load products'));
+      if (e is DioException) {
+        emit(ProductError(NetworkFailure('Network error occurred')));
+        return;
+      }
+      emit(ProductError(ClientFailure('Failed to load products')));
     }
   }
 
@@ -32,7 +37,11 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       final products = await repository.fetchProducts();
       emit(ProductLoaded(products));
     } catch (e) {
-      emit(ProductError('Failed to refresh products'));
+      if (e is DioException) {
+        emit(ProductError(NetworkFailure('Network error occurred')));
+        return;
+      }
+      emit(ProductError(ClientFailure('Failed to refresh products')));
     }
   }
 }
