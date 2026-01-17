@@ -16,6 +16,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
   void _onLoadProducts(LoadProducts event, Emitter<ProductState> emit) async {
     try {
+      if (state is ProductLoading) return;
       emit(ProductLoading());
       final products = await repository.fetchProducts();
       emit(ProductLoaded(products));
@@ -26,6 +27,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
   void _onRefreshProducts(RefreshProducts event, Emitter<ProductState> emit) async {
     try {
+      if (state is ProductLoading) return;
       emit(ProductLoading());
       final products = await repository.fetchProducts();
       emit(ProductLoaded(products));

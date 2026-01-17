@@ -16,7 +16,21 @@ class _ProductPageState extends State<ProductPage> {
     return BlocProvider(
       create: (context) => ProductBloc()..add(LoadProducts()),
       child: Scaffold(
-        appBar: AppBar(title: const Text('Products')),
+        appBar: AppBar(
+          title: const Text('Products'),
+          actions: [
+            BlocBuilder<ProductBloc, ProductState>(
+              builder: (context, state) {
+                return IconButton(
+                  icon: Icon(Icons.refresh_rounded),
+                  onPressed: () {
+                    context.read<ProductBloc>().add(RefreshProducts());
+                  },
+                );
+              },
+            ),
+          ],
+        ),
         body: BlocBuilder<ProductBloc, ProductState>(
           builder: (context, state) {
             if (state is ProductLoading) {
@@ -28,6 +42,7 @@ class _ProductPageState extends State<ProductPage> {
                 itemBuilder: (context, index) {
                   final product = products.products[index];
                   return ListTile(
+                    leading: Image.network(product.thumbnail, width: 50, height: 50, fit: BoxFit.cover),
                     title: Text(product.title),
                     subtitle: Text('\$${product.price}'),
                     onTap: () {

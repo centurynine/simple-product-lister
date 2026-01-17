@@ -19,6 +19,21 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 200),
+              child: CarouselView.weighted(
+                flexWeights: const <int>[1],
+                consumeMaxWeight: false,
+                children: widget.product.images.map((image) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: Container(
+                      color: Colors.grey[200],
+                      child: Image.network(image, fit: BoxFit.contain)),
+                  );
+                }).toList(),
+              ),
+            ),
             Text(widget.product.title, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             Text('\$${widget.product.price}', style: const TextStyle(fontSize: 20, color: Colors.green)),
