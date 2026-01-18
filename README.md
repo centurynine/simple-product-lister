@@ -1,16 +1,18 @@
-# app
+# Simple Product Lister
 
-A new Flutter project.
+Flutter project.
 
-## Getting Started
+## Screenshot
 
-This project is a starting point for a Flutter application.
+<p align="center"> <img src="https://github.com/centurynine/simple-product-lister/blob/main/images/product_page.png?raw=true" width="45%"/> 
+  <img src="https://github.com/centurynine/simple-product-lister/blob/main/images/product_detail_page.png?raw=true" width="45%"/>
+</p>
 
-A few resources to get you started if this is your first Flutter project:
+## State Management
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+ใช้ BLoC เป็นตัวจัดการ state ทั้งหมดของแอป โดยแบ่งฝั่งที่เป็น logic & ui โดยหลังจากเข้าสู่แอปก็จะส่ง event ที่เป็น loading เข้าสู่ BLoC เเพื่อสั่งให้มีการโหลดข้อมูลจาก api หลังจากนั้นถ้าโหลดข้อมูลสำเร็จก็จะทำการส่ง event ที่เป็น loaded เข้าสู่ BLoC แต่ถ้าหากโหลดไม่สำเร็จก็จะส่ง event ที่เป็น error เข้าสู่ BLoC และมีการแบ่งว่าเป็น error จาก network หรือของฝั่ง client เอง
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## AI Tools
+
+- Github Copilot ใช้ในการ suggestion code
+- ChatGPT ใช้ในการถามคำถามทั่วไป เช่น การวางรูปแบบ structure
