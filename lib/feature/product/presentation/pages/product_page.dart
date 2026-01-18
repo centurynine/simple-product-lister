@@ -1,3 +1,4 @@
+import 'package:app/core/ui/toast/snackbar_toast.dart';
 import 'package:app/feature/product/presentation/bloc/product_bloc.dart';
 import 'package:app/feature/product/presentation/pages/product_detail_page.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +14,12 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProductBloc()..add(LoadProducts()),
+    return BlocListener<ProductBloc, ProductState>(
+      listener: (context, state) {
+        if (state is ProductLoaded) {
+          SnackbarToast.showToast(context, 'Products loaded successfully');
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Products'),

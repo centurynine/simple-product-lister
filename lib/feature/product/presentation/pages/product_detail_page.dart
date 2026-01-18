@@ -20,7 +20,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 200),
+              constraints: const BoxConstraints(maxHeight: 300),
               child: CarouselView.weighted(
                 flexWeights: const <int>[1],
                 consumeMaxWeight: false,
